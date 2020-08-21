@@ -2,13 +2,9 @@ import socket
 from datetime import datetime
 
 host = ''
-ip = input("IP de quem quer conversar: ")
-
 myPort = 7000
-otherPort = 7001
 
 myAddress = (host, myPort)
-otherAddress = (ip, otherPort)
 
 serverSocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 serverSocket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
@@ -19,13 +15,19 @@ print('Aguardando conexao com cliente')
 connection, cliente = serverSocket.accept()
 print('Conectado ao cliente' )
 
-clientName = connection.recv(1024).decode("utf-8")
+otherIP = input("IP de quem quer conversar: ")
+otherPort = 7001
+otherAddress = (otherIP, otherPort)
 
 clientSocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 clientSocket.connect(otherAddress)
 
+
 myName = input("Seu nome: ")
 clientSocket.send(myName.encode('utf-8'))
+
+print("Aguardando outra pessoa informar nome...")
+clientName = connection.recv(1024).decode("utf-8")
 
 while True:
     # receber
