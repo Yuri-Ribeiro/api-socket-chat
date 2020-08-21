@@ -38,6 +38,3 @@ while True:
 
     currentyTime = datetime.now().strftime('%H:%M:%S')
     print( clientName + " às " + currentyTime + ": " + receive.decode("utf-8") )
-
-serverSocket.close()
-clientSocket.close()

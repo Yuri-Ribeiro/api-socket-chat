@@ -40,6 +40,3 @@ while True:
     # enviar
     message = input("Eu: ")
     clientSocket.send(message.encode('utf-8'))
-
-serverSocket.close()
-clientSocket.close()
